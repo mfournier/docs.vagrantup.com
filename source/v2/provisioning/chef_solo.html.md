@@ -134,3 +134,18 @@ end
 
 Hashes, arrays, etc. can be used with the JSON configuration object. Basically,
 anything that can be turned cleanly into JSON works.
+
+## Using NFS
+
+Depending on the default shared folder implementation your providers offers,
+chef_solo provisioning can become a bit slow when you start having several
+hundreds files of chef code. Using NFS can help in this case, but is
+[a bit more work to setup](/v2/synced-folders/nfs.html):
+
+```ruby
+Vagrant.configure("2") do |config|
+  config.vm.provision :chef_solo do |chef|
+    chef.nfs = true
+  end
+end
+```

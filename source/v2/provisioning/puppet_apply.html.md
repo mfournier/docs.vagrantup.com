@@ -111,3 +111,18 @@ Vagrant.configure("2") do |config|
   end
 end
 ```
+
+## Using NFS
+
+Depending on the default shared folder implementation your providers offers,
+puppet provisioning can become a bit slow when you start having several
+hundreds files of puppet code. Using NFS can help in this case, but is
+[a bit more work to setup](/v2/synced-folders/nfs.html):
+
+```ruby
+Vagrant.configure("2") do |config|
+  config.vm.provision :puppet do |puppet|
+    puppet.nfs = true
+  end
+end
+```
